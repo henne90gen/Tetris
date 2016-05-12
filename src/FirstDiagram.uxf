@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>100</y>
+      <w>190</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+Game()
+tick()
+run()
+getCanvas()
+getWindowHeight()
+getWindowWidth()
+main(String[] args)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
