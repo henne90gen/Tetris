@@ -1,15 +1,12 @@
 package game.graphics;
 
-/**
- * Created by henne90gen on 20.06.15. Class represents a vector in 2D-Space
- */
 public class Vector2D {
 
-	private double x;
-	private double y;
-	private final double z;
+	private int x;
+	private int y;
+	private final int z;
 
-	public Vector2D(double x, double y) {
+	public Vector2D(int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.z = 1;
@@ -35,7 +32,7 @@ public class Vector2D {
 		return x * vec.getX() + y * vec.getY();
 	}
 
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
@@ -43,7 +40,7 @@ public class Vector2D {
 		this.x = x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
 	}
 
@@ -51,7 +48,7 @@ public class Vector2D {
 		this.y = y;
 	}
 
-	private double getZ() {
+	private int getZ() {
 		return z;
 	}
 

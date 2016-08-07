@@ -7,10 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame {
@@ -18,7 +15,6 @@ public class Window extends JFrame {
 	private JPanel pMain = new JPanel();
 	private static Canvas canvas = new Canvas();
 	private static BufferedImage image = null;
-	private String title;
 	private int width, height;
 
 	/**
@@ -33,13 +29,12 @@ public class Window extends JFrame {
 	 */
 	public Window(String title, int width, int height) {
 		super(title);
-		this.title = title;
 		this.width = width;
 		this.height = height;
 
 		// Setting up window parameters
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);
 		setLayout(new GridBagLayout());

@@ -54,7 +54,7 @@ public class GameOverScreen {
 		for (int row = 0; row < gosImg.getHeight(); row++) {
 			for (int col = 0; col < gosImg.getWidth(); col++) {
 				if (gosImgPixels[row * gosImg.getWidth() + col] >= 0) {
-					pixels[(int) ((pos.getY()*TileMap.TILE_SIZE + row) * Game.WIDTH + pos.getX()*TileMap.TILE_SIZE + col)] = gosImgPixels[row
+					pixels[(pos.getY()*TileMap.TILE_SIZE + row) * Game.WIDTH + pos.getX()*TileMap.TILE_SIZE + col] = gosImgPixels[row
 							* gosImg.getWidth() + col];
 				}
 			}

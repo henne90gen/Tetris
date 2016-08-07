@@ -20,18 +20,18 @@ public class TO extends Tetrimino {
 	public void move(boolean[][] collisionMap, Direction dir) {
 		Vector2D newPos = pos.addVector(new Vector2D(dir.getX(), dir.getY()));
 		if (dir == Direction.LEFT) {
-			if (!collisionMap[(int) newPos.getX()][(int) newPos.getY()]
-					&& !collisionMap[(int) newPos.getX()][(int) newPos.getY() + 1]) {
+			if (!collisionMap[newPos.getX()][newPos.getY()]
+					&& !collisionMap[newPos.getX()][newPos.getY() + 1]) {
 				pos = newPos;
 			}
 		} else if (dir == Direction.RIGHT) {
-			if (!collisionMap[(int) newPos.getX() + 1][(int) newPos.getY()]
-					&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 1]) {
+			if (!collisionMap[newPos.getX() + 1][newPos.getY()]
+					&& !collisionMap[newPos.getX() + 1][newPos.getY() + 1]) {
 				pos = newPos;
 			}
 		} else if (dir == Direction.DOWN) {
-			if (!collisionMap[(int) newPos.getX()][(int) newPos.getY() + 1]
-					&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 1]) {
+			if (!collisionMap[newPos.getX()][newPos.getY() + 1]
+					&& !collisionMap[newPos.getX() + 1][newPos.getY() + 1]) {
 				pos = newPos;
 			} else {
 				TileMap.releaseBlocks(tiles);
@@ -63,7 +63,7 @@ public class TO extends Tetrimino {
 						pos.getY() * TileMap.TILE_SIZE + TileMap.TILE_SIZE);
 				break;
 			}
-			tiles[i] = new Tile(rectPos, TileMap.TILE_SIZE, TileMap.TILE_SIZE, color, ID_O);
+			tiles[i] = new Tile(rectPos, TileMap.TILE_SIZE, TileMap.TILE_SIZE, color);
 		}
 	}
 }

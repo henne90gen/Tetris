@@ -4,13 +4,12 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-@SuppressWarnings("serial")
-public class InputHandler extends AbstractAction {
+class InputHandler extends AbstractAction {
 
 	private Direction dir;
 	private String state;
 
-	public InputHandler(Direction dir, String state) {
+	InputHandler(Direction dir, String state) {
 		this.dir = dir;
 		this.state = state;
 	}

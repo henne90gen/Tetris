@@ -8,8 +8,8 @@ public abstract class Tetrimino {
 
 	protected Tile[] tiles;
 	protected Vector2D pos;
-	protected int id;
-	protected Direction orientation;
+	private int id;
+	Direction orientation;
 	protected int color;
 
 	public static final int ID_O = 0;
@@ -20,7 +20,7 @@ public abstract class Tetrimino {
 	public static final int ID_S = 5;
 	public static final int ID_Z = 6;
 
-	public Tetrimino(Vector2D pos, int id, int color) {
+	Tetrimino(Vector2D pos, int id, int color) {
 		this.pos = pos;
 		this.id = id;
 		this.color = color;
@@ -40,8 +40,8 @@ public abstract class Tetrimino {
 	public int[] addToPixels(int[] pixels) {
 		if (tiles != null) {
 			for (Tile tile : tiles) {
-				for (int row = (int) tile.getPos().getY(); row < tile.getPos().getY() + tile.getHeight(); row++) {
-					for (int col = (int) tile.getPos().getX(); col < tile.getPos().getX() + tile.getWidth(); col++) {
+				for (int row = tile.getPos().getY(); row < tile.getPos().getY() + tile.getHeight(); row++) {
+					for (int col = tile.getPos().getX(); col < tile.getPos().getX() + tile.getWidth(); col++) {
 						pixels[row * Game.getCanvas().getWidth() + col] = tile.getColor();
 					}
 				}

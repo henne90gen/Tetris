@@ -11,9 +11,9 @@ import game.TileMap;
 
 public class ScoreCounter {
 
-	public static final int FONT_SIZE = TileMap.TILE_SIZE;
-	public static final int SCORECOUNTER_SIZE_X = 3 * FONT_SIZE;
-	public static final int SCORECOUNTER_SIZE_Y = 1 * FONT_SIZE;
+	private static final int FONT_SIZE = TileMap.TILE_SIZE;
+	private static final int SCORECOUNTER_SIZE_X = 3 * FONT_SIZE;
+	private static final int SCORECOUNTER_SIZE_Y = FONT_SIZE;
 	private int[] score;
 	private Vector2D pos;
 	private BufferedImage numImg;
@@ -88,9 +88,8 @@ public class ScoreCounter {
 	}
 
 	public int[] addToPixels(int[] pixels) {
-		for (int globalY = (int) (pos.getY() * TileMap.TILE_SIZE); globalY < pos.getY() * TileMap.TILE_SIZE + SCORECOUNTER_SIZE_Y; globalY++) {
-			for (int globalX = (int) (pos.getX() * TileMap.TILE_SIZE); globalX < pos.getX() * TileMap.TILE_SIZE + SCORECOUNTER_SIZE_X; globalX++) {
-				int color = 0;
+		for (int globalY = pos.getY() * TileMap.TILE_SIZE; globalY < pos.getY() * TileMap.TILE_SIZE + SCORECOUNTER_SIZE_Y; globalY++) {
+			for (int globalX = pos.getX() * TileMap.TILE_SIZE; globalX < pos.getX() * TileMap.TILE_SIZE + SCORECOUNTER_SIZE_X; globalX++) {
 				int index = 0;
 				if (globalX < pos.getX() * TileMap.TILE_SIZE + FONT_SIZE) {
 					index = 0;
@@ -99,9 +98,9 @@ public class ScoreCounter {
 				} else if (globalX < pos.getX() * TileMap.TILE_SIZE + FONT_SIZE * 3) {
 					index = 2;
 				}
-				int localX = (int) (globalX - pos.getX() * TileMap.TILE_SIZE - index * FONT_SIZE);
-				int localY = (int) (globalY - pos.getY() * TileMap.TILE_SIZE);
-				color = numPixels[score[index]][(int) (localY * FONT_SIZE + localX)];
+				int localX = globalX - pos.getX() * TileMap.TILE_SIZE - index * FONT_SIZE;
+				int localY = globalY - pos.getY() * TileMap.TILE_SIZE;
+				int color = numPixels[score[index]][localY * FONT_SIZE + localX];
 				if (color < (255 << 16) + (255 << 8) + 255) {
 					pixels[globalY * TileMap.TILE_MAP_WIDTH * TileMap.TILE_SIZE + globalX] = color;
 				}

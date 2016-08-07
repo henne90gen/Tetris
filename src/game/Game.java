@@ -19,33 +19,32 @@ public class Game implements Runnable {
 
 	// General Settings
 	public static final int WIDTH = TileMap.TILE_SIZE * TileMap.TILE_MAP_WIDTH;
-	public static final int HEIGHT = TileMap.TILE_SIZE * TileMap.TILE_MAP_HEIGHT;
-	public static final String NAME = "Tetris";
-	public static final int SPEED = 3;
-	public static final int TURN_TIME = 200;
-	public static final int DROP_DELAY = 50;
+	private static final int HEIGHT = TileMap.TILE_SIZE * TileMap.TILE_MAP_HEIGHT;
+	private static final String NAME = "Tetris";
+	//public static final int SPEED = 3;
+	private static final int TURN_TIME = 200;
+	private static final int DROP_DELAY = 50;
 
-	public static Window window;
-	public static boolean running = false;
-	public static boolean gameOver = false;
-	public static int tickCount = 0;
-	public int lastTickCount = 0;
-	public int lastTickCountInput = 0;
-	public double lastTurn = System.currentTimeMillis();
-	public int[] pixels = null;
-	public ScoreCounter scoreCounter;
-	public GameOverScreen gos;
+	private static Window window;
+	private static boolean running = false;
+	private static boolean gameOver = false;
+	private static int tickCount = 0;
+	private int lastTickCount = 0;
+	private int lastTickCountInput = 0;
+	private double lastTurn = System.currentTimeMillis();
+	private int[] pixels = null;
+	private ScoreCounter scoreCounter;
+	private GameOverScreen gos;
 
 	// Variables for input handling
-	public static final String PRESSED = "pressed";
-	public static final String RELEASED = "released";
-	public static Map<Direction, Boolean> keyMap = new EnumMap<Direction, Boolean>(Direction.class);
+	static final String PRESSED = "pressed";
+	static final String RELEASED = "released";
+	static Map<Direction, Boolean> keyMap = new EnumMap<>(Direction.class);
 
 	/**
-	 * Initializes all important variables - main window - shapes - pixels -
-	 * input
+	 * Initializes all important variables - main window - shapes - pixels - input
 	 */
-	public Game() {
+	private Game() {
 
 		window = new Window(NAME, WIDTH, HEIGHT);
 		
@@ -86,7 +85,7 @@ public class Game implements Runnable {
 	/**
 	 * Updates the game-logic
 	 */
-	public void update() {
+	private void update() {
 		tickCount++;
 		if (lastTickCount + DROP_DELAY < tickCount) {
 			TileMap.move(Direction.DOWN);
@@ -98,11 +97,11 @@ public class Game implements Runnable {
 	/**
 	 * Renders Background, TileMap and ScoreCounter
 	 */
-	public void render() {
+	private void render() {
 		if (!gameOver) {
 			// Paint the background
 			for (int i = 0; i < pixels.length; i++) {
-				int color = (110 << 16) + (110 << 8) + 0;
+				int color = (110 << 16) + (110 << 8);
 				pixels[i] = color;
 			}
 
@@ -171,14 +170,6 @@ public class Game implements Runnable {
 		}
 	}
 
-	public static int getWindowWidth() {
-		return window.getWidth();
-	}
-
-	public static int getWindowHeight() {
-		return window.getHeight();
-	}
-
 	public static Canvas getCanvas() {
 		return window.getCanvas();
 	}
@@ -187,15 +178,12 @@ public class Game implements Runnable {
 		running = false;
 	}
 
-	public static void gameOver() {
+	static void gameOver() {
 		gameOver = true;
 	}
 
 	/**
 	 * Shows a custom error popup on the current window
-	 * 
-	 * @param window
-	 * @param error
 	 */
 	public static void printErrorMessage(Window window, String error) {
 		JOptionPane.showMessageDialog(window, error);

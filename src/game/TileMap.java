@@ -17,12 +17,12 @@ public class TileMap {
 	public static final int TILE_SIZE = 20;
 	public static final int TILE_MAP_WIDTH = 14;
 	public static final int TILE_MAP_HEIGHT = 20;
-	public static Tile[][] blocks = new Tile[TILE_MAP_HEIGHT][TILE_MAP_WIDTH];
-	public static boolean[][] collisionMap = new boolean[TILE_MAP_WIDTH][TILE_MAP_HEIGHT];
-	public static Tetrimino currentTetr;
+	private static Tile[][] blocks = new Tile[TILE_MAP_HEIGHT][TILE_MAP_WIDTH];
+	private static boolean[][] collisionMap = new boolean[TILE_MAP_WIDTH][TILE_MAP_HEIGHT];
+	private static Tetrimino currentTetr;
 	private static ScoreCounter scoreCounter;
 
-	public static void init(ScoreCounter counter) {
+	static void init(ScoreCounter counter) {
 		scoreCounter = counter;
 		addNewTetr();
 	}
@@ -36,7 +36,7 @@ public class TileMap {
 		updateTileMap();
 	}
 
-	public static int[] addToPixels(int[] pixels) {
+	static int[] addToPixels(int[] pixels) {
 		for (int row = 0; row < TILE_MAP_HEIGHT; row++) {
 			for (int col = 0; col < TILE_MAP_WIDTH; col++) {
 				if (blocks[row][col] != null) {
@@ -56,7 +56,7 @@ public class TileMap {
 		return pixels;
 	}
 
-	public static void addNewTetr() {
+	private static void addNewTetr() {
 		
 		int id = 10;
 		while (id > 6) {
@@ -93,9 +93,9 @@ public class TileMap {
 
 	public static void releaseBlocks(Tile[] releasedBlocks) {
 		for (Tile newBlock : releasedBlocks) {
-			if (!collisionMap[(int) newBlock.getPos().getX() / TILE_SIZE][(int) newBlock.getPos().getY() / TILE_SIZE]) {
-				blocks[(int) (newBlock.getPos().getY() / TILE_SIZE)][(int) (newBlock.getPos().getX()
-						/ TILE_SIZE)] = newBlock;
+			if (!collisionMap[newBlock.getPos().getX() / TILE_SIZE][newBlock.getPos().getY() / TILE_SIZE]) {
+				blocks[newBlock.getPos().getY() / TILE_SIZE][newBlock.getPos().getX()
+						/ TILE_SIZE] = newBlock;
 			} else {
 				Game.gameOver();
 			}
@@ -103,7 +103,7 @@ public class TileMap {
 		addNewTetr();
 	}
 
-	public static void updateTileMap() {
+	private static void updateTileMap() {
 		collisionMap = new boolean[TILE_MAP_WIDTH][TILE_MAP_HEIGHT];
 		for (int i = 0; i < TILE_MAP_HEIGHT; i++) {
 			if (i == TILE_MAP_HEIGHT - 1) {
@@ -128,7 +128,7 @@ public class TileMap {
 	 * Goes through the every row and checks if there is one completed in which
 	 * case that row is removed
 	 */
-	public static void checkRows() {
+	private static void checkRows() {
 		int currentRow = TILE_MAP_HEIGHT - 1;
 		while (currentRow > 0) {
 			boolean lineComplete = true;

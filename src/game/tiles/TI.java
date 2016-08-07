@@ -14,15 +14,15 @@ public class TI extends Tetrimino {
 
 	public void turn(boolean[][] collisionMap) {
 		if ((orientation == Direction.UP || orientation == Direction.DOWN)) {
-			if (!collisionMap[(int) pos.getX() + 1][(int) pos.getY() + 1]
-					&& !collisionMap[(int) pos.getX() + 2][(int) pos.getY() + 1]
-					&& !collisionMap[(int) pos.getX() + 3][(int) pos.getY() + 1]) {
+			if (!collisionMap[pos.getX() + 1][pos.getY() + 1]
+					&& !collisionMap[pos.getX() + 2][pos.getY() + 1]
+					&& !collisionMap[pos.getX() + 3][pos.getY() + 1]) {
 				orientation = Direction.LEFT;
 			}
 		} else if ((orientation == Direction.LEFT || orientation == Direction.RIGHT)) {
-			if (!collisionMap[(int) pos.getX() + 1][(int) pos.getY() + 1]
-					&& !collisionMap[(int) pos.getX() + 1][(int) pos.getY() + 2]
-					&& !collisionMap[(int) pos.getX() + 1][(int) pos.getY() + 3]) {
+			if (!collisionMap[pos.getX() + 1][pos.getY() + 1]
+					&& !collisionMap[pos.getX() + 1][pos.getY() + 2]
+					&& !collisionMap[pos.getX() + 1][pos.getY() + 3]) {
 				orientation = Direction.UP;
 			}
 		}
@@ -33,21 +33,21 @@ public class TI extends Tetrimino {
 		Vector2D newPos = pos.addVector(new Vector2D(dir.getX(), dir.getY()));
 		if (orientation == Direction.UP || orientation == Direction.DOWN) {
 			if (dir == Direction.LEFT) {
-				if (!collisionMap[(int) newPos.getX() + 1][(int) newPos.getY()]
-						&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 1]
-						&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 2]
-						&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 3]) {
+				if (!collisionMap[newPos.getX() + 1][newPos.getY()]
+						&& !collisionMap[newPos.getX() + 1][newPos.getY() + 1]
+						&& !collisionMap[newPos.getX() + 1][newPos.getY() + 2]
+						&& !collisionMap[newPos.getX() + 1][newPos.getY() + 3]) {
 					pos = newPos;
 				}
 			} else if (dir == Direction.RIGHT) {
-				if (!collisionMap[(int) newPos.getX() + 1][(int) newPos.getY()]
-						&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 1]
-						&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 2]
-						&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 3]) {
+				if (!collisionMap[newPos.getX() + 1][newPos.getY()]
+						&& !collisionMap[newPos.getX() + 1][newPos.getY() + 1]
+						&& !collisionMap[newPos.getX() + 1][newPos.getY() + 2]
+						&& !collisionMap[newPos.getX() + 1][newPos.getY() + 3]) {
 					pos = newPos;
 				}
 			} else if (dir == Direction.DOWN) {
-				if (!collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 3]) {
+				if (!collisionMap[newPos.getX() + 1][newPos.getY() + 3]) {
 					pos = newPos;
 				} else {
 					TileMap.releaseBlocks(tiles);
@@ -55,18 +55,18 @@ public class TI extends Tetrimino {
 			}
 		} else {
 			if (dir == Direction.LEFT) {
-				if (!collisionMap[(int) newPos.getX()][(int) newPos.getY() + 1]) {
+				if (!collisionMap[newPos.getX()][newPos.getY() + 1]) {
 					pos = newPos;
 				}
 			} else if (dir == Direction.RIGHT) {
-				if (!collisionMap[(int) newPos.getX() + 3][(int) newPos.getY() + 1]) {
+				if (!collisionMap[newPos.getX() + 3][newPos.getY() + 1]) {
 					pos = newPos;
 				}
 			} else if (dir == Direction.DOWN) {
-				if (!collisionMap[(int) newPos.getX()][(int) newPos.getY() + 1]
-						&& !collisionMap[(int) newPos.getX() + 1][(int) newPos.getY() + 1]
-						&& !collisionMap[(int) newPos.getX() + 2][(int) newPos.getY() + 1]
-						&& !collisionMap[(int) newPos.getX() + 3][(int) newPos.getY() + 1]) {
+				if (!collisionMap[newPos.getX()][newPos.getY() + 1]
+						&& !collisionMap[newPos.getX() + 1][newPos.getY() + 1]
+						&& !collisionMap[newPos.getX() + 2][newPos.getY() + 1]
+						&& !collisionMap[newPos.getX() + 3][newPos.getY() + 1]) {
 					pos = newPos;
 				} else {
 					TileMap.releaseBlocks(tiles);
@@ -81,41 +81,13 @@ public class TI extends Tetrimino {
 		tiles = new Tile[4];
 		if (orientation == Direction.UP || orientation == Direction.DOWN) {
 			for (int i = 0; i < tiles.length; i++) {
-				Vector2D rectPos = null;
-				switch (i) {
-				case 0:
-					rectPos = new Vector2D((pos.getX() + 1) * TileMap.TILE_SIZE, pos.getY() * TileMap.TILE_SIZE);
-					break;
-				case 1:
-					rectPos = new Vector2D((pos.getX() + 1) * TileMap.TILE_SIZE, (pos.getY() + 1) * TileMap.TILE_SIZE);
-					break;
-				case 2:
-					rectPos = new Vector2D((pos.getX() + 1) * TileMap.TILE_SIZE, (pos.getY() + 2) * TileMap.TILE_SIZE);
-					break;
-				case 3:
-					rectPos = new Vector2D((pos.getX() + 1) * TileMap.TILE_SIZE, (pos.getY() + 3) * TileMap.TILE_SIZE);
-					break;
-				}
-				tiles[i] = new Tile(rectPos, TileMap.TILE_SIZE, TileMap.TILE_SIZE, color, ID_I);
+				Vector2D rectPos = new Vector2D((pos.getX() + 1) * TileMap.TILE_SIZE, (pos.getY() + i) * TileMap.TILE_SIZE);
+				tiles[i] = new Tile(rectPos, TileMap.TILE_SIZE, TileMap.TILE_SIZE, color);
 			}
 		} else {
 			for (int i = 0; i < tiles.length; i++) {
-				Vector2D rectPos = null;
-				switch (i) {
-				case 0:
-					rectPos = new Vector2D(pos.getX() * TileMap.TILE_SIZE, (pos.getY() + 1) * TileMap.TILE_SIZE);
-					break;
-				case 1:
-					rectPos = new Vector2D((pos.getX() + 1) * TileMap.TILE_SIZE, (pos.getY() + 1) * TileMap.TILE_SIZE);
-					break;
-				case 2:
-					rectPos = new Vector2D((pos.getX() + 2) * TileMap.TILE_SIZE, (pos.getY() + 1) * TileMap.TILE_SIZE);
-					break;
-				case 3:
-					rectPos = new Vector2D((pos.getX() + 3) * TileMap.TILE_SIZE, (pos.getY() + 1) * TileMap.TILE_SIZE);
-					break;
-				}
-				tiles[i] = new Tile(rectPos, TileMap.TILE_SIZE, TileMap.TILE_SIZE, color, ID_I);
+				Vector2D rectPos = new Vector2D((pos.getX() + i) * TileMap.TILE_SIZE, (pos.getY() + 1) * TileMap.TILE_SIZE);
+				tiles[i] = new Tile(rectPos, TileMap.TILE_SIZE, TileMap.TILE_SIZE, color);
 			}
 		}
 	}
